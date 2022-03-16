@@ -1,11 +1,26 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
+import * as cdk from 'aws-cdk-lib';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
+import { join } from 'path';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
-export class CdkTestStack extends Stack {
-  constructor(scope: Construct, id: string, props?: StackProps) {
+export class CdkTestStack extends cdk.Stack {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    const lambda = new NodejsFunction(this, "lambda", {
+      description: "Lambda",
+      handler: "handler",
+      entry: join(__dirname, "../lambda/lambda/index.ts"),
+      runtime: Runtime.NODEJS_14_X,
+      timeout: cdk.Duration.seconds(30),
+      environment: {
+        ENV_VAR: "env-var",
+      }
+    });
+
+    
     // The code that defines your stack goes here
 
     // example resource
