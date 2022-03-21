@@ -4,7 +4,6 @@ import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
 import { join } from 'path';
-import { CdkTestStack } from './cdk-test-stack';
 
 export class LambdaStack extends cdk.Stack {
   constructor(scope: Construct, id: string, stageName:string,  props?: cdk.StackProps) {
