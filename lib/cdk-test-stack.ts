@@ -19,7 +19,7 @@ export class CdkTestStack extends cdk.Stack {
 
     })
 
-    const lambda = new NodejsFunction(this, "lambda", {
+    new NodejsFunction(this, "lambda", {
       description: "Lambda",
       handler: "handler",
       entry: join(__dirname, "../lambda/lambda/index.ts"),
