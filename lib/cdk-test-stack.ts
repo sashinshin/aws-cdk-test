@@ -14,7 +14,7 @@ export class CdkTestStack extends cdk.Stack {
       pipelineName:'TestPipeline',
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub('sashinshin/aws-cdk-test', 'main'),
-        commands: ['npm ci', 'npm run build', 'npm cdk synth'],
+        commands: ['npm ci', 'npm run build', 'npx cdk synth'],
       }),
 
     })
