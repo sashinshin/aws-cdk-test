@@ -4,6 +4,8 @@ import * as s3Deploy from "aws-cdk-lib/aws-s3-deployment"
 import { Construct } from 'constructs';
 import {PipelineAppStage} from './stage'
 import { CodePipeline, CodePipelineSource, ManualApprovalStep, ShellStep } from 'aws-cdk-lib/pipelines';
+import { join } from 'path';
+
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class CdkTestStack extends cdk.Stack {
@@ -27,7 +29,7 @@ export class CdkTestStack extends cdk.Stack {
     });
 
     new s3Deploy.BucketDeployment(this, "BucketDeploy", {
-      sources: [s3Deploy.Source.asset("../dist")],
+      sources: [s3Deploy.Source.asset(join(__dirname, "../dist"))],
       destinationBucket: bucket,
     })
 
